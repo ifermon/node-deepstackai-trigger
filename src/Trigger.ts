@@ -249,9 +249,9 @@ export default class Trigger {
       const doesOverlap = predictionRect.overlaps(anObjectRect) && prediction.label == anObject.label;
 
       if (doesOverlap) {
-        log.verbose(`Trigger ${this.name}`, `Prediction ${prediction} blocked by existing object.`);
+        log.verbose(`Trigger ${this.name}`, `Prediction ${prediction.label} blocked by existing ${anObject.label}.`);
       } else {
-        log.verbose(`Trigger ${this.name}`, `Prediction ${prediction} unblocked, does not match any existing.`);
+        log.verbose(`Trigger ${this.name}`, `Prediction ${prediction.label} unblocked, does not match any existing ${prediction.label}.`);
       }
       return doesOverlap;
     });
