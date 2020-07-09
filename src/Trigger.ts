@@ -39,7 +39,7 @@ export default class Trigger {
    */
   public analyzedFilesCount = 0;
   public cooldownTime: number;
-  public objectPersistance: boolean;
+  public objectPersistence: boolean;
   public enabled = true;
   public name: string;
   public masks: Rect[];
@@ -236,7 +236,8 @@ export default class Trigger {
    * @returns True if any of the predictions are masked
    */
   public objectWasAlreadyFound(fileName: string, prediction: IDeepStackPrediction): boolean {
-    if (!this.objectPersistance || !this._persistentObjects) {
+    if (!this.objectPersistence || !this._persistentObjects) {
+      log.verbose(`Trigger ${this.name}`, `Object persistence not enabled`);
       return false;
     }
 
@@ -297,7 +298,7 @@ export default class Trigger {
     if (!isRegistered) {
       log.verbose(
         `Trigger ${this.name}`,
-        `${fileName}: Detected object ${label} is not in the watch objects list [${this.watchObjects?.join(", ")}]`,
+        `${fileName}: Detected object ${label} is not in the watch objects list[${this.watchObjects?.join(", ")}]`,
       );
     } else {
       log.verbose(`Trigger ${this.name}`, `${fileName}: Matched triggering object ${label}`);

@@ -74,7 +74,7 @@ export function loadConfiguration(configFilePaths: string[]): string {
     log.info("Triggers", `Loaded configuration for ${triggerJson.name}`);
     const configuredTrigger = new Trigger({
       cooldownTime: triggerJson.cooldownTime,
-      objectPersistance: triggerJson.objectPersistance ?? false, // No object persistance unless specified
+      objectPersistence: triggerJson.objectPersistence ?? false, // No object persistence unless specified
       enabled: triggerJson.enabled ?? true, // If it isn't specified then enable the camera
       name: triggerJson.name,
       snapshotUri: triggerJson.snapshotUri,
