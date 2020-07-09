@@ -9,7 +9,7 @@ version: "3.3"
 services:
   trigger:
     environment:
-      - TZ=America/Los_Angeles
+      - TZ=America/New_York
     build:
       context: .
       dockerfile: Dockerfile # Apply development-only overrides to the base image

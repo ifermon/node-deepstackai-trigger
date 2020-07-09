@@ -2,30 +2,29 @@
   "$schema": "https://raw.githubusercontent.com/danecreekphotography/node-deepstackai-trigger/main/src/schemas/triggerConfiguration.schema.json",
   "triggers": [
     {
-      "name": "Cat detector",
-      "watchPattern": "/aiinput/Cat*.jpg",
+      "name": "Garage motion detector",
+      "watchPattern": "/aiinput/Garage**.jpg",
       "enabled": true,
+      "cooldownTime": 60,
       "threshold": {
         "minimum": 10,
-        "maximum": 90
+        "maximum": 100
       },
       "handlers": {
         "webRequest": {
-          "triggerUris": ["http://localhost:81/admin?trigger&camera=Cat"]
+          "triggerUris": ["http://192.168.0.41:81/admin?trigger&camera=GarageHD&user=iferm&pw=vader370"]
         },
         "mqtt": {
-          "topic": "aimotion/triggers/cat"
-        },
-        "telegram": {
-          "chatIds": [1]
+          "topic": "aimotion/triggers/garage",
+          "offDelay": 300
         }
       },
-      "watchObjects": ["cat"]
+      "watchObjects": ["car", "person", "truck"]
     },
     {
       "name": "Dog detector",
       "watchPattern": "/aiinput/Dog*.jpg",
-      "enabled": true,
+      "enabled": false,
       "threshold": {
         "minimum": 50,
         "maximum": 100
