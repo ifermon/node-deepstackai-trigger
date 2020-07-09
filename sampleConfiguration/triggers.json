@@ -6,27 +6,26 @@
       "watchPattern": "/aiinput/Cat*.jpg",
       "objectPersistance": true,
       "enabled": true,
+      "cooldownTime": 60,
       "threshold": {
         "minimum": 10,
-        "maximum": 90
+        "maximum": 100
       },
       "handlers": {
         "webRequest": {
           "triggerUris": [
-            "http://localhost:81/admin?trigger&camera=Cat"
+            "http://192.168.0.41:81/admin?trigger&camera=GarageHD&user=iferm&pw=vader370"
           ]
         },
         "mqtt": {
-          "topic": "aimotion/triggers/cat"
-        },
-        "telegram": {
-          "chatIds": [
-            1
-          ]
+          "topic": "aimotion/triggers/garage",
+          "offDelay": 300
         }
       },
       "watchObjects": [
-        "cat"
+        "car",
+        "person",
+        "truck"
       ]
     },
     {
