@@ -230,7 +230,7 @@ export default class Trigger {
   }
 
   /**
-   * Checks to see if this object was already found
+   * Checks to see if this object was already found last time
    * @param fileName The filename of the image being evaluated
    * @param predictions The list of predictions found in the image
    * @returns True if any of the predictions are masked
@@ -243,27 +243,17 @@ export default class Trigger {
     // Loop through list of found objects to see if there are any matches
     // Check for both overlap and matching type
     const result = this._persistentObjects.some(anObject => {
-      const doesOverlap = this.predictionsMatch(anObject, prediction)
+      const anObjectRect = new Rect(anObject.x_min, anObject.y_min, anObject.x_max, anObject.y_max);
+      const predictionRect = new Rect(prediction.x_min, prediction.y_min, prediction.x_max, prediction.y_max);
+      const doesOverlap = predictionRect.overlaps(anObjectRect) && prediction.label == anObject.label;
 
       if (doesOverlap) {
         log.verbose(`Trigger ${this.name}`, `Prediction ${prediction} blocked by existing object.`);
       }
+      return doesOverlap;
     });
 
     return result;
-  }
-
-  /**
-   * Compares two predictions and returns true if they match
-   * @param prediction1 
-   * @param prediction2
-   */
-  public predictionsMatch(prediction1: IDeepStackPrediction, prediction2: IDeepStackPrediction): boolean {
-    const prediction1Rect = new Rect(prediction1.x_min, prediction1.y_min, prediction1.x_max, prediction1.y_max);
-    const prediction2Rect = new Rect(prediction2.x_min, prediction2.y_min, prediction2.x_max, prediction2.y_max);
-    const doesOverlap = prediction1Rect.overlaps(prediction2Rect) && prediction1.label == prediction2.label;
-
-    return doesOverlap;
   }
 
   /**
