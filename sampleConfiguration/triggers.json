@@ -1,9 +1,10 @@
 {
-  "$schema": "https://raw.githubusercontent.com/danecreekphotography/node-deepstackai-trigger/main/src/schemas/triggerConfiguration.schema.json",
+  "$schema": "https://raw.githubusercontent.com/ifermon/node-deepstackai-trigger/main/src/schemas/triggerConfiguration.schema.json",
   "triggers": [
     {
       "name": "Cat detector",
       "watchPattern": "/aiinput/Cat*.jpg",
+      "objectPersistance": true,
       "enabled": true,
       "threshold": {
         "minimum": 10,
@@ -11,16 +12,22 @@
       },
       "handlers": {
         "webRequest": {
-          "triggerUris": ["http://localhost:81/admin?trigger&camera=Cat"]
+          "triggerUris": [
+            "http://localhost:81/admin?trigger&camera=Cat"
+          ]
         },
         "mqtt": {
           "topic": "aimotion/triggers/cat"
         },
         "telegram": {
-          "chatIds": [1]
+          "chatIds": [
+            1
+          ]
         }
       },
-      "watchObjects": ["cat"]
+      "watchObjects": [
+        "cat"
+      ]
     },
     {
       "name": "Dog detector",
@@ -32,20 +39,32 @@
       },
       "handlers": {
         "webRequest": {
-          "triggerUris": ["http://localhost:81/admin?trigger&camera=Dog&memo={{formattedPredictions}}"]
+          "triggerUris": [
+            "http://localhost:81/admin?trigger&camera=Dog&memo={{formattedPredictions}}"
+          ]
         },
         "mqtt": {
-          "messages": [{ "topic": "aimotion/triggers/dog" }]
+          "messages": [
+            {
+              "topic": "aimotion/triggers/dog"
+            }
+          ]
         },
         "pushover": {
-          "userKeys": ["1"]
+          "userKeys": [
+            "1"
+          ]
         },
         "telegram": {
-          "chatIds": [1],
+          "chatIds": [
+            1
+          ],
           "annotateImage": true
         }
       },
-      "watchObjects": ["dog"]
+      "watchObjects": [
+        "dog"
+      ]
     }
   ]
 }

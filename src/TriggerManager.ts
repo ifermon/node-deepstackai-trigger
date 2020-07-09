@@ -64,7 +64,7 @@ export function loadConfiguration(configFilePaths: string[]): string {
   if (!triggerConfigJson) {
     throw Error(
       "Unable to find a trigger configuration file. Verify the trigger secret points to a file " +
-        "called triggers.json or that the /config mount point contains a file called triggers.json.",
+      "called triggers.json or that the /config mount point contains a file called triggers.json.",
     );
   }
 
@@ -74,6 +74,7 @@ export function loadConfiguration(configFilePaths: string[]): string {
     log.info("Triggers", `Loaded configuration for ${triggerJson.name}`);
     const configuredTrigger = new Trigger({
       cooldownTime: triggerJson.cooldownTime,
+      objectPersistance: triggerJson.objectPersistance ?? false, // No object persistance unless specified
       enabled: triggerJson.enabled ?? true, // If it isn't specified then enable the camera
       name: triggerJson.name,
       snapshotUri: triggerJson.snapshotUri,
