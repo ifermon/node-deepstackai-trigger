@@ -230,7 +230,7 @@ export default class Trigger {
   }
 
   /**
-   * Checks to see if this object was already found last time
+   * Checks to see if this object was found last time
    * @param fileName The filename of the image being evaluated
    * @param predictions The list of predictions found in the image
    * @returns True if any of the predictions are masked
