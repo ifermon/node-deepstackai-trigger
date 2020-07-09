@@ -22,16 +22,16 @@
 
   // Set this to true if your images are stored in a remote folder that's
   // mounted as a network share and then mapped to the Docker image.
-  "awaitWriteFinish": false,
+  "awaitWriteFinish": true,
 
   // Provides the configuration details for your MQTT server. To enable
   // mqtt set the uri, username (if required), password (if required),
   // and set enabled to true.
   "mqtt": {
-    "uri": "mqtt://mqtt:1883",
-    //"username": "user",
-    //"password": "pass",
-    "enabled": false
+    "uri": "mqtt://192.168.0.3",
+    "username": "ifermon",
+    "password": "vader370",
+    "enabled": true
   },
 
   // Provides the configuration details for Telegram bot messages.

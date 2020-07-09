@@ -2,8 +2,8 @@
   "$schema": "https://raw.githubusercontent.com/ifermon/node-deepstackai-trigger/main/src/schemas/triggerConfiguration.schema.json",
   "triggers": [
     {
-      "name": "Cat detector",
-      "watchPattern": "/aiinput/Cat*.jpg",
+      "name": "Garage motion detector",
+      "watchPattern": "/aiinput/Garage**.jpg",
       "objectPersistance": true,
       "enabled": true,
       "cooldownTime": 60,
