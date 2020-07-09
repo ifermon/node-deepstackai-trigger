@@ -249,6 +249,8 @@ export default class Trigger {
 
       if (doesOverlap) {
         log.verbose(`Trigger ${this.name}`, `Prediction ${prediction} blocked by existing object.`);
+      } else {
+        log.verbose(`Trigger ${this.name}`, `Prediction ${prediction} unbocked, does not match any existing.`);
       }
       return doesOverlap;
     });
